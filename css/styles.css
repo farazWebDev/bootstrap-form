@@ -1,0 +1,111 @@
+h2.title {
+margin: 1em 0;
+border-bottom: 3px double #000;
+padding-bottom: 6px;
+text-align: center;
+}
+
+/**
+ * make the field a flex-container
+ * reverse the order so label is on top
+ */ 
+.field {
+display: flex;
+flex-flow: column-reverse;
+margin-bottom: 0.25em;
+}
+
+/**
+ * add a transition to the label, input and textarea
+ */
+label, input, textarea {
+transition: all 0.2s;
+touch-action: manipulation;
+}
+
+input, textarea {
+font-size: 1em;
+border: 0;
+border-bottom: 1px solid #ccc;
+font-family: inherit;
+-webkit-appearance: none;
+border-radius: 0;
+padding: 0;
+cursor: text;
+height: 30px;
+}
+input:focus, textarea:focus {
+outline: 0;
+border-bottom: 1px solid #666;
+}
+label {
+text-transform: uppercase;
+letter-spacing: 0.05em;
+}
+
+/**
+ * translate down and scale the label up, to cover the placeholder area
+ */
+input:placeholder-shown + label, textarea:placeholder-shown + label {
+font-size: 14px;
+cursor: text;
+max-width: 66.66%;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+transform-origin: left bottom;
+transform: translate(0.75rem, 2.5rem) scale(1.25);
+}
+
+/**
+ * by default, hiding placeholder, as we want to show Label inside placehoder area
+ * and adding transition and setting to inherit. so that when it is focused, we can see transition
+ */
+.form-control::-webkit-input-placeholder {
+opacity: 0;
+transition: inherit;
+}
+.form-control::-moz-placeholder {
+opacity: 0;
+transition: inherit;
+}
+.form-control:-ms-input-placeholder {
+opacity: 0;
+transition: inherit;
+}
+.form-control::-ms-input-placeholder {
+opacity: 0;
+transition: inherit;
+}
+.form-control::placeholder {
+opacity: 0;
+transition: inherit;
+}
+
+/**
+ * show the placeholder when the element (input or textarea) is focused
+ */
+input:focus::-webkit-input-placeholder, textarea:focus::-webkit-input-placeholder {
+opacity: 1;
+}
+input:focus::-moz-placeholder, textarea:focus::-moz-placeholder {
+opacity: 1;
+}
+input:focus:-ms-input-placeholder, textarea:focus:-ms-input-placeholder {
+opacity: 1;
+}
+input:focus::-ms-input-placeholder, textarea:focus::-ms-input-placeholder {
+opacity: 1;
+}
+input:focus::placeholder, textarea:focus::placeholder {
+opacity: 1;
+}
+
+/**
+ * when the element (input or textarea) is focused, remove the label transform.
+ */
+input:not(:placeholder-shown) + label, input:focus + label, textarea:not(:placeholder-shown) + label, textarea:focus + label {
+font-size: 14px;
+transform: translate(0, 0) scale(1);
+cursor: pointer;
+}
